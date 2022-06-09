@@ -2,7 +2,6 @@
 import 'package:ewallt_app/Models/credit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mccounting_text/mccounting_text.dart';
-
 import '../../../size_config.dart';
 
 class Balance extends StatelessWidget {
@@ -39,18 +38,19 @@ class Balance extends StatelessWidget {
             SizedBox(height: SizeConfig.defaultHeight),
             Row(
               children: [
-                Text(
-                  "\$",
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+
                 McCountingText(
                   begin: cards[_previousIndex].amount!,
                   end: cards[_currentIndex].amount!,
                   precision: 2,
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                       fontWeight: FontWeight.bold, color: Colors.white),
-                )
+                ),
+                Text(
+                  " \AOA",
+                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
               ],
             )
           ],

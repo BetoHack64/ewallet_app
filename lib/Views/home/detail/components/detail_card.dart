@@ -32,8 +32,7 @@ class _DetailCardState extends State<DetailCard> {
         alignment: Alignment.center,
         child: Padding(
             padding: EdgeInsets.fromLTRB(
-                SizeConfig.defaultWidth * 2,
-                0,
+                SizeConfig.defaultWidth * 2, 0,
                 SizeConfig.defaultWidth * 2,
                 widget.sheetProgress! > 0.462
                     ? SizeConfig.defaultHeight * 55

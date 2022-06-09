@@ -7,20 +7,20 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.defaultWidth * 2,
+          horizontal: SizeConfig.defaultWidth * 1,
           vertical: SizeConfig.defaultHeight * 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Bank Cards",
+            "Minhas Carteiras",
             style: Theme.of(context)
                 .textTheme
                 .headline4!
-                .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                .copyWith(color: Colors.white, ),
           ),
           CircleAvatar(
-            radius: SizeConfig.defaultHeight * 2.5,
+            radius: SizeConfig.defaultHeight * 3.5,
             child: Image.asset("assets/avatar.png"),
           )
         ],

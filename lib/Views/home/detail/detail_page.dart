@@ -1,6 +1,5 @@
 import 'package:ewallt_app/Models/credit_card.dart';
 import 'package:ewallt_app/Models/transaction.dart';
-import 'package:ewallt_app/Views/home/detail/components/detail_header.dart';
 import 'package:ewallt_app/constants.dart';
 import 'package:ewallt_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +22,10 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xff010116),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        toolbarHeight: 40.0,
+        backgroundColor: const Color(0xff010116),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Icon(
@@ -49,37 +49,28 @@ class _DetailPageState extends State<DetailPage> {
         alignment: Alignment.topCenter,
         children: [
           PlayAnimation(
-              tween: Tween(begin: SizeConfig.defaultHeight * 20, end: 0.0),
-              curve: Curves.easeOut,
-              duration: Duration(milliseconds: 200),
-              builder: (context, child, value) => Transform.translate(
-                offset: Offset(0, 3.0),
-                child: child,
-              ),
-              child: DetailHeader(sheetProgress: sheetProgress)),
-          PlayAnimation(
               tween: Tween(begin: 0.2, end: 1.0),
               curve: Curves.easeOut,
               duration: Duration(milliseconds: 200),
               builder: (context, child, value) => Transform.scale(
                 scale: 1.0,
-                alignment: Alignment.center,
+                alignment: Alignment.topCenter,
                 child: Opacity(opacity: 1.0, child: child),
               ),
               child:
               DetailCard(sheetProgress: sheetProgress, card: widget.card)),
-          _buildBottomSheet(),
+             _buildBottomSheet(),
         ],
       ),
     );
   }
 
   _buildBottomSheet() => PlayAnimation(
-        tween: Tween(begin: SizeConfig.defaultHeight * 30, end: 0.0),
+        tween: Tween(begin: SizeConfig.defaultHeight , end: 0.0),
         curve: Curves.easeOut,
         duration: Duration(milliseconds: 200),
         builder: (context, child, value) => Transform.translate(
-          offset: Offset(0, 3),
+          offset: Offset(0, 1.0),
           child: child,
         ),
         child: Align(
@@ -87,16 +78,16 @@ class _DetailPageState extends State<DetailPage> {
           child: SlidingSheet(
               color: sheetColor,
               cornerRadius: SizeConfig.defaultWidth * 2.5,
-              snapSpec: SnapSpec(
+              snapSpec: const SnapSpec(
                   snap: true,
-                  snappings: [0.3, 0.6, 1],
-                  positioning: SnapPositioning.relativeToAvailableSpace),
+                  snappings: [0.6, 0.6, 1],
+                  positioning: SnapPositioning.relativeToSheetHeight),
               listener: (state) => setState(() {
                     sheetProgress = ((state.extent - 0.3) / 0.65);
                   }),
               headerBuilder: (context, state) {
                 return Container(
-                  height: SizeConfig.defaultHeight * 7,
+                  height: SizeConfig.defaultHeight * 8,
                   width: double.infinity,
                   color: sheetColor,
                   alignment: Alignment.centerLeft,

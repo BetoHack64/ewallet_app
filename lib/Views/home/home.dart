@@ -35,7 +35,7 @@ class _ScreenHomeState extends State<ScreenHome> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xff010116),
       body: SafeArea(
         child: ChangeNotifierProvider(
           create: (_) => _pageNotifier,
@@ -57,7 +57,7 @@ class _ScreenHomeState extends State<ScreenHome> {
   _buildCardsList() => Expanded(
     child: Transform(
       transform: Matrix4.identity()
-        ..translate(-SizeConfig.defaultWidth * 4)
+        ..translate(-SizeConfig.defaultWidth * 2)
         ..rotateZ(-pi / 2),
       alignment: Alignment.center,
       child: PageView.builder(
@@ -108,18 +108,20 @@ class _ScreenHomeState extends State<ScreenHome> {
     ),
   );
 
-  _buildPageIndicator() => Padding(
-    padding: EdgeInsets.symmetric(
-        horizontal: SizeConfig.defaultWidth * 2,
-        vertical: SizeConfig.defaultHeight * 2),
-    child: SmoothPageIndicator(
-      controller: _pageNotifier.pageController,
-      count: cards.length,
-      effect: WormEffect(
-          dotHeight: SizeConfig.defaultHeight,
-          dotWidth: SizeConfig.defaultHeight,
-          dotColor: Colors.grey,
-          activeDotColor: Colors.white),
+  _buildPageIndicator() => Center(
+    child: Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.defaultWidth * 2,
+          vertical: SizeConfig.defaultHeight * 2),
+      child: SmoothPageIndicator(
+        controller: _pageNotifier.pageController,
+        count: cards.length,
+        effect: WormEffect(
+            dotHeight: SizeConfig.defaultHeight,
+            dotWidth: SizeConfig.defaultHeight,
+            dotColor: Colors.grey,
+            activeDotColor: Colors.white),
+      ),
     ),
   );
 }
