@@ -25,7 +25,7 @@ class _ScreenMainState extends State<ScreenMain> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-   return SafeArea(child: GestureDetector(
+   return GestureDetector(
      onTap: (){
        FocusScope.of(context).unfocus();
      },
@@ -71,6 +71,6 @@ class _ScreenMainState extends State<ScreenMain> with SingleTickerProviderStateM
              ],
            ),
          )),
-   ));
+   );
   }
 }
