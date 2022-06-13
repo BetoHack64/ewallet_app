@@ -29,13 +29,13 @@ class _DetailCardState extends State<DetailCard> {
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         child: Padding(
             padding: EdgeInsets.fromLTRB(
-                SizeConfig.defaultWidth * 2, 0,
+                SizeConfig.defaultWidth * 2, SizeConfig.defaultHeight * 4,
                 SizeConfig.defaultWidth * 2,
                 widget.sheetProgress! > 0.462
-                    ? SizeConfig.defaultHeight * 55
+                    ? SizeConfig.defaultHeight * 20
                     : SizeConfig.defaultHeight * 20 +
                         widget.sheetProgress! * 600),
             child: Transform.scale(

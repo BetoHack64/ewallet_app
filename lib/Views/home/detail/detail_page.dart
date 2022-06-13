@@ -1,5 +1,6 @@
 import 'package:ewallt_app/Models/credit_card.dart';
 import 'package:ewallt_app/Models/transaction.dart';
+import 'package:ewallt_app/Views/home/components/floatButtom.dart';
 import 'package:ewallt_app/constants.dart';
 import 'package:ewallt_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,10 @@ class DetailPage extends StatefulWidget {
   _DetailPageState createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPageState extends State<DetailPage>
+    with TickerProviderStateMixin {
+  bool isTapped = true;
+  bool isExpanded = false;
   double sheetProgress = 0;
 
   @override
@@ -24,7 +28,7 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       backgroundColor: const Color(0xff010116),
       appBar: AppBar(
-        toolbarHeight: 40.0,
+        toolbarHeight: SizeConfig.defaultHeight * 5,
         backgroundColor: const Color(0xff010116),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
@@ -60,61 +64,69 @@ class _DetailPageState extends State<DetailPage> {
               child:
               DetailCard(sheetProgress: sheetProgress, card: widget.card)),
              _buildBottomSheet(),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+                child: FoldableOptions()),
+          ),
         ],
       ),
     );
   }
 
-  _buildBottomSheet() => PlayAnimation(
-        tween: Tween(begin: SizeConfig.defaultHeight , end: 0.0),
-        curve: Curves.easeOut,
-        duration: Duration(milliseconds: 200),
-        builder: (context, child, value) => Transform.translate(
-          offset: Offset(0, 1.0),
-          child: child,
-        ),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: SlidingSheet(
-              color: sheetColor,
-              cornerRadius: SizeConfig.defaultWidth * 2.5,
-              snapSpec: const SnapSpec(
-                  snap: true,
-                  snappings: [0.6, 0.6, 1],
-                  positioning: SnapPositioning.relativeToSheetHeight),
-              listener: (state) => setState(() {
-                    sheetProgress = ((state.extent - 0.3) / 0.65);
-                  }),
-              headerBuilder: (context, state) {
-                return Container(
-                  height: SizeConfig.defaultHeight * 8,
-                  width: double.infinity,
-                  color: sheetColor,
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.defaultWidth * 2),
-                    child: Text(
-                      "Today",
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+  _buildBottomSheet() => Align(
+    alignment: Alignment.bottomCenter,
+    child: PlayAnimation(
+          tween: Tween(begin: SizeConfig.defaultHeight * 8 , end: 0.0),
+          curve: Curves.easeOut,
+          duration: Duration(milliseconds: 200),
+          builder: (context, child, value) => Transform.translate(
+            offset: Offset(0, 1.0),
+            child: child,
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: SlidingSheet(
+                color: sheetColor,
+                cornerRadius: SizeConfig.defaultWidth * 2.5,
+                snapSpec: const SnapSpec(
+                    snap: true,
+                    snappings: [0.5, 0.6, 1],
+                    positioning: SnapPositioning.relativeToAvailableSpace),
+                listener: (state) => setState(() {
+                      sheetProgress = ((state.extent - 0.3) / 0.65);
+                    }),
+                headerBuilder: (context, state) {
+                  return Container(
+                    height: SizeConfig.defaultHeight * 4,
+                    width: double.infinity,
+                    color: sheetColor,
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: SizeConfig.defaultWidth * 2),
+                      child: Text(
+                        "Today",
+                        style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                );
-              },
-              builder: (context, state) {
-                return Container(
-                  color: sheetColor,
-                  child: ListView.builder(
-                      itemCount: transactions.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return TransactionSummary(
-                            transaction: transactions[index]);
-                      }),
-                );
-              }),
+                  );
+                },
+                builder: (context, state) {
+                  return Container(
+                    color: sheetColor,
+                    child: ListView.builder(
+                        itemCount: transactions.length,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return TransactionSummary(
+                              transaction: transactions[index]);
+                        }),
+                  );
+                }),
+          ),
         ),
-      );
+  );
 }
