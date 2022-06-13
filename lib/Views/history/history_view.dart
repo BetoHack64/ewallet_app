@@ -16,21 +16,21 @@ class _HistoryViewState extends State<HistoryView> {
     return Scaffold(
       backgroundColor: const Color(0xfff3f9ff),
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Row(
           //mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                width: 40,
-                height: 40,
+                width: 30,
+                height: 30,
                 alignment: Alignment.center,
                 child: IconButton(
+                
                   onPressed: () {},
+                  alignment: Alignment.center,
                   icon: const Icon(
                     Icons.keyboard_arrow_left_rounded,
                     color: Colors.black,
@@ -74,6 +74,27 @@ class _HistoryViewState extends State<HistoryView> {
               ],
             ),
             const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  width: 60,
+                  height: 60,
+                ),
+                const Text(
+                  "-\$5.00",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

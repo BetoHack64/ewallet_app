@@ -1,4 +1,5 @@
 import 'package:ewallt_app/Views/Widget/apresetention_cards.dart';
+import 'package:ewallt_app/Views/history/history_view.dart';
 import 'package:ewallt_app/Views/home/home.dart';
 import 'package:ewallt_app/main.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +35,7 @@ class _ScreenMainState extends State<ScreenMain> with SingleTickerProviderStateM
          controller: controller.tabController,
          children: [
            ScreenHome(),
-           Column(children: [Text("A carregar Cartao"),],),
+           HistoryView(),
            Column(children: [Text("A carregar Cartao"),],),
            Column(children: [Text("A carregar Cartao"),],)
          ],
